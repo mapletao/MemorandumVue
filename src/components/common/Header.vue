@@ -1,5 +1,9 @@
 <template>
+  <div class="page-header">
+    <slot name="left"></slot>
     <h2>{{title}}</h2>
+    <slot name="right"></slot>
+  </div>
 </template>
 
 <script>
