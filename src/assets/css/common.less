@@ -1,4 +1,5 @@
 @barHeight: .8rem;
+@barLabelHeight: .4rem;
 .page {
   position: relative;
   width: 100%;
@@ -8,10 +9,21 @@
     position: absolute;
     top: 0;
     height: @barHeight;
+    line-height: @barHeight;
     width: 100%;
     font-size: .4rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 .2rem;
     & + .page-con {
       top: @barHeight
+    }
+    .header-left {
+      width: @barLabelHeight;
+    }
+    .header-right {
+      width: @barLabelHeight;
     }
   }
   .page-con {

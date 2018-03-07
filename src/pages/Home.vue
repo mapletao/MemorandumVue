@@ -1,11 +1,11 @@
 <template>
   <div class="page home-page">
     <Header :title="'我的备忘录'">
-      <a slot="left" @click="prevMonth()">&lt;</a>
-      <a slot="right" @click="nextMonth()">&gt;</a>
+      <a slot="left" @click="prevMonth()" class="header-left">&lt;</a>
+      <a slot="right" @click="nextMonth()" class="header-right">&gt;</a>
     </Header>
     <div class="page-con">
-      <h2>{{this.currentYear}} {{this.currentMonth}}</h2>
+      <h2 style="font-size: .4rem;">{{this.currentYear}} {{this.currentMonth}}</h2>
       <ul class="calendar-con">
         <li v-for="item in weeks" :key="item" class="calendar-item">{{item}}</li>
         <template v-for="list in days">
