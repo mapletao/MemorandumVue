@@ -146,7 +146,7 @@ export default {
     },
     // 获取一个月的天数
     getDay ({y, m}) {
-      const day = 28
+      const day = (y % 400 === 0 || (y % 100 !== 0 && y % 4 === 0)) ? 29 : 28
       switch (m) {
         case 1:
         case 3:
@@ -168,19 +168,20 @@ export default {
 </script>
 
 <style lang="less">
+  @import '../assets/css/theme.less';
   .home-page {
     .calendar-header {
       display: flex;
       justify-content: space-between;
       padding: 0 10px;
-      font-size: 14px;
+      font-size: @fontSize14;
     }
     .calendar-con {
       list-style: none;
       font-size: 0;
       .calendar-item {
         display: inline-block;
-        font-size: 14px;
+        font-size: @fontSize14;
         width: 100%/7;
         text-align: center;
         &.active {
@@ -189,7 +190,7 @@ export default {
       }
     }
     .note-con {
-      font-size: 14px;
+      font-size: @fontSize14;
       padding: 0 10px;
       >li {
         margin: 10px 0;
