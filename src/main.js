@@ -4,8 +4,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
+import 'lib-flexible/flexible'
 
-require('!style-loader!css-loader!less-loader!./assets/css/common.less')
+require('./assets/css/common.less')
 
 Vue.config.productionTip = false
 
