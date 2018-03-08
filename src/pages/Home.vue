@@ -18,7 +18,7 @@
         </template>
       </ul>
       <ul class="note-con">
-        <li v-for="item in notes" :key="item">{{item}}</li>
+        <li v-for="item in notes" :key="item.name">age:{{item.age}} name:{{item.name}}</li>
         <li class="add-note">+</li>
       </ul>
     </div>
@@ -27,6 +27,7 @@
 
 <script>
 import Header from '../components/common/Header'
+import {getNotes} from '../services/notes/notes'
 
 export default {
   name: 'Home',
@@ -55,15 +56,19 @@ export default {
       this.setSelectMonth(this.currentMonth)
       this.setSelectYear(this.currentYear)
       this.setCurrentDay(d)
+      this.getNotes()
     },
     getNotes () {
-      const notes = []
-      for (var i = 0; i < 10; i++) {
-        notes.push(i)
-      }
-      Promise.resolve(notes).then(res => {
-        this.setNotes(notes)
+      getNotes().then(res => {
+        this.setNotes(res)
       })
+      // const notes = []
+      // for (var i = 0; i < 10; i++) {
+      //   notes.push(i)
+      // }
+      // Promise.resolve(notes).then(res => {
+      //   this.setNotes(notes)
+      // })
     },
     setNotes (val) {
       this.notes = val
