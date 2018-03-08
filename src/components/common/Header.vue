@@ -1,7 +1,7 @@
 <template>
   <div class="page-header">
     <slot name="left"></slot>
-    <h2>{{title}}</h2>
+    <h2 class="header-title">{{title}}</h2>
     <slot name="right"></slot>
   </div>
 </template>
@@ -16,6 +16,10 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less">
+  .page-header {
+    .header-title {
+      width: 100%;
+    }
+  }
 </style>

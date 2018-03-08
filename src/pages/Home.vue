@@ -1,11 +1,13 @@
 <template>
   <div class="page home-page">
     <Header :title="'我的备忘录'">
-      <a slot="left" @click="prevMonth()" class="header-left">&lt;</a>
-      <a slot="right" @click="nextMonth()" class="header-right">&gt;</a>
     </Header>
     <div class="page-con">
-      <h2 style="font-size: .4rem;">{{this.currentYear}} {{this.currentMonth}}</h2>
+      <div class="calendar-header">
+        <span @click="prevMonth()" class="header-left">&lt;</span>
+        {{this.currentYear}} {{this.currentMonth}}
+        <span @click="nextMonth()" class="header-right">&gt;</span>
+      </div>
       <ul class="calendar-con">
         <li v-for="item in weeks" :key="item" class="calendar-item">{{item}}</li>
         <template v-for="list in days">
@@ -14,6 +16,10 @@
             <span>{{item}}</span>
           </li>
         </template>
+      </ul>
+      <ul class="note-con">
+        <li v-for="item in notes" :key="item">{{item}}</li>
+        <li class="add-note">+</li>
       </ul>
     </div>
   </div>
@@ -33,6 +39,7 @@ export default {
       selectMonth: null,
       currentMonth: null,
       currentYear: null,
+      notes: [],
       days: []
     }
   },
@@ -48,6 +55,18 @@ export default {
       this.setSelectMonth(this.currentMonth)
       this.setSelectYear(this.currentYear)
       this.setCurrentDay(d)
+    },
+    getNotes () {
+      const notes = []
+      for (var i = 0; i < 10; i++) {
+        notes.push(i)
+      }
+      Promise.resolve(notes).then(res => {
+        this.setNotes(notes)
+      })
+    },
+    setNotes (val) {
+      this.notes = val
     },
     setCurrentDay (val) {
       this.currentDay = val
@@ -76,6 +95,7 @@ export default {
         this.setSelectMonth(m)
         this.setSelectYear(y)
         this.setCurrentDay(d)
+        this.getNotes()
       }
     },
     initCurrentDate ({y, m}) {
@@ -148,17 +168,39 @@ export default {
 </script>
 
 <style lang="less">
-.calendar-con {
-  list-style: none;
-  font-size: 0;
-  .calendar-item {
-    display: inline-block;
-    font-size: .4rem;
-    width: 100%/7;
-    text-align: center;
-    &.active {
-      background: #ddd;
+  .home-page {
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    .calendar-con {
+      list-style: none;
+      font-size: 0;
+      .calendar-item {
+        display: inline-block;
+        font-size: 14px;
+        width: 100%/7;
+        text-align: center;
+        &.active {
+          background: #ddd;
+        }
+      }
+    }
+    .note-con {
+      font-size: 14px;
+      padding: 0 10px;
+      >li {
+        margin: 10px 0;
+        background: #ccc;
+      }
+      .add-note {
+        border: 1px dotted #ddd;
+        font-size: 20px;
+        text-align: center;
+        background: none;
+      }
     }
   }
-}
 </style>

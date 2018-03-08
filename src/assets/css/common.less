@@ -1,5 +1,4 @@
-@barHeight: .8rem;
-@barLabelHeight: .4rem;
+@barHeight: 44px;
 .page {
   position: relative;
   width: 100%;
@@ -11,24 +10,22 @@
     height: @barHeight;
     line-height: @barHeight;
     width: 100%;
-    font-size: .4rem;
+    font-size: 16px;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-    padding: 0 .2rem;
+    padding: 0 10px;
     & + .page-con {
       top: @barHeight
     }
-    .header-left {
-      width: @barLabelHeight;
-    }
-    .header-right {
-      width: @barLabelHeight;
-    }
   }
   .page-con {
-    position: relative;
+    position: absolute;
     width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     overflow: auto;
   }
   .page-footer {
