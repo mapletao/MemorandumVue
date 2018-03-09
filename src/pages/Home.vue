@@ -27,7 +27,7 @@
 
 <script>
 import Header from '../components/common/Header'
-import {getNotes} from '../services/notes/notes'
+import {getNotes, updateNote} from '../services/notes/notes'
 
 export default {
   name: 'Home',
@@ -69,6 +69,9 @@ export default {
       // Promise.resolve(notes).then(res => {
       //   this.setNotes(notes)
       // })
+      updateNote().then(res => {
+        console.log(res)
+      })
     },
     setNotes (val) {
       this.notes = val

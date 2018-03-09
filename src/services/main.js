@@ -1,4 +1,4 @@
-import ajax from '../assets/js/ajax'
+import MyAjax from '../assets/js/MyAjax'
 export default {
-  ajax: ajax
+  MyAjax: MyAjax
 }

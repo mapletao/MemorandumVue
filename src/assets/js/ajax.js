@@ -84,16 +84,6 @@ CreatXml.prototype = {
     }, self.setting.timeout)
   },
   para: function (data) {
-    // var datastr = [];
-    // if (data && Object.prototype.toString.call(data) === "[object Object]") {
-    //     for (var i in data) {
-    //         datastr.push(i + '=' + data[i]);
-    //     }
-    //     datastr = datastr.join('&')
-    // } else {
-    //     datastr = data;
-    // }
-    // return JSON.stringify(data)
     var datastr = JSON.stringify(data)
     return datastr || data
   },
@@ -120,6 +110,40 @@ CreatXml.prototype = {
     }
   }
 }
+
+function AjaxOption ({type, url, data, header}) {
+  this.type = type
+  this.url = url
+  this.data = data
+  this.header = header
+  setTimeout(() => {
+    this.init()
+  }, 0)
+}
+AjaxOption.prototype = {
+  constructor: AjaxOption,
+  success: function (cb) {
+    this.successHandle = cb
+    return this
+  },
+  error: function (cb) {
+    this.errorHandle = cb
+    return this
+  },
+  init: function () {
+    const p = {...this}
+    p.success = p.successHandle
+    p.error = p.errorHandle
+    new CreatXml(p)
+  }
+}
+const methods = ['post', 'get', 'patch', 'delete', 'put']
+methods.forEach(item => {
+  CreatXml[item] = (url, data = '', header = {}) => {
+    return new AjaxOption({type: item, url: url, data: data, header: header})
+  }
+})
+
 export default CreatXml
 // return CreatXml
 // })

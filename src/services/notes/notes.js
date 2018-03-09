@@ -1,15 +1,9 @@
 import serve from '../main'
+const url = 'http://127.0.0.1:4000/test-list'
+
 export const getNotes = (query) => {
-  return new Promise((resolve, reject) => {
-    serve.ajax({
-      type: 'get',
-      url: 'http://127.0.0.1:4000/test-list',
-      success: res => {
-        resolve(res)
-      },
-      error: err => {
-        reject(err)
-      }
-    })
-  })
+  return serve.MyAjax.get(url)
+}
+export const updateNote = (note) => {
+  return serve.MyAjax.post(url + '/11', {id: 1})
 }
