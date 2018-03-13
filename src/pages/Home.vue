@@ -19,15 +19,17 @@
       </ul>
       <ul class="note-con">
         <li v-for="item in notes" :key="item.name">age:{{item.age}} name:{{item.name}}</li>
-        <li class="add-note">+</li>
+        <li class="add-note" @click="setShowModal(true)">+</li>
       </ul>
     </div>
+    <Modal v-if="showModal" @close="setShowModal(false)"></Modal>
   </div>
 </template>
 
 <script>
 import Header from '../components/common/Header'
 import {getNotes, updateNote} from '../services/notes/notes'
+import Modal from '../components/common/Modal'
 
 export default {
   name: 'Home',
@@ -41,7 +43,8 @@ export default {
       currentMonth: null,
       currentYear: null,
       notes: [],
-      days: []
+      days: [],
+      showModal: false
     }
   },
   created () {
@@ -49,6 +52,9 @@ export default {
     this.initDays(now)
   },
   methods: {
+    setShowModal (val) {
+      this.showModal = val
+    },
     isSelected (d) {
       return (this.selectYear === this.currentYear && this.selectMonth === this.currentMonth && +d === this.currentDay)
     },
@@ -171,7 +177,7 @@ export default {
       }
     }
   },
-  components: {Header}
+  components: {Header, Modal}
 }
 </script>
 
