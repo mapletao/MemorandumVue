@@ -15,7 +15,7 @@
       <footer class="modal-footer">
         <slot name="footer">
           <div type="button" class="btn-cancel" @click="close">取消</div>
-          <div type="button" class="btn-ok" @click="close">确定</div>
+          <div type="button" class="btn-ok" @click="ok">确定</div>
         </slot>
       </footer>
     </div>
@@ -31,6 +31,9 @@ export default {
   methods: {
     close () {
       this.$emit('close')
+    },
+    ok () {
+      this.$emit('ok')
     },
     mask () {
       this.close()

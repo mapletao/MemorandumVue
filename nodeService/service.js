@@ -50,6 +50,20 @@ app.get('/test-list', function (req, res) {
     res.send(responsText)
   })
 })
+
+app.get('/test-list/:id', function (req, res) {
+  fs.readFile('test.json', function (err, data) {
+    if (err) return res.send(err)
+    const responsText = JSON.parse(data)
+    const result = responsText.filter(item => +item.id === +req.params.id)[0]
+    if (result) {
+      res.send(result)
+    } else {
+      res.send({status: 404, message: '资源未找到'})
+    }
+  })
+})
+
 app.delete('/test-list/:id', function (req, res) {
   res.send(req.params.id)
 })

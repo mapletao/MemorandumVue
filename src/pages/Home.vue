@@ -18,17 +18,20 @@
         </template>
       </ul>
       <ul class="note-con">
-        <li v-for="item in notes" :key="item.name">age:{{item.age}} name:{{item.name}}</li>
-        <li class="add-note" @click="setShowModal(true)">+</li>
+        <router-link :to="'note/'+item.id" tag="li" v-for="item in notes" :key="item.name">
+          mobile:{{item.mobile}}
+          name:{{item.name}}
+          remark: {{item.remark}}
+        </router-link>
+        <router-link :to="'note/0'" tag="li" class="add-note" >+</router-link>
       </ul>
     </div>
-    <Modal v-if="showModal" @close="setShowModal(false)"></Modal>
   </div>
 </template>
 
 <script>
 import Header from '../components/common/Header'
-import {getNotes, updateNote} from '../services/notes/notes'
+import {getNotes} from '../services/notes/notes'
 import Modal from '../components/common/Modal'
 
 export default {
@@ -43,8 +46,7 @@ export default {
       currentMonth: null,
       currentYear: null,
       notes: [],
-      days: [],
-      showModal: false
+      days: []
     }
   },
   created () {
@@ -52,9 +54,6 @@ export default {
     this.initDays(now)
   },
   methods: {
-    setShowModal (val) {
-      this.showModal = val
-    },
     isSelected (d) {
       return (this.selectYear === this.currentYear && this.selectMonth === this.currentMonth && +d === this.currentDay)
     },
@@ -67,16 +66,6 @@ export default {
     getNotes () {
       getNotes().then(res => {
         this.setNotes(res)
-      })
-      // const notes = []
-      // for (var i = 0; i < 10; i++) {
-      //   notes.push(i)
-      // }
-      // Promise.resolve(notes).then(res => {
-      //   this.setNotes(notes)
-      // })
-      updateNote().then(res => {
-        console.log(res)
       })
     },
     setNotes (val) {

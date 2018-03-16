@@ -7,3 +7,7 @@ export const getNotes = (query) => {
 export const updateNote = (note) => {
   return serve.MyAjax.post(url + '/11', {id: 1})
 }
+
+export const getNote = (id) => {
+  return serve.MyAjax.get(`${url}/${id}`)
+}
