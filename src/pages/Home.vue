@@ -32,7 +32,7 @@
 <script>
 import Header from '../components/common/Header'
 import {getNotes} from '../services/notes/notes'
-import Modal from '../components/common/Modal'
+import Modal from '../components/common/MyModal'
 
 export default {
   name: 'Home',

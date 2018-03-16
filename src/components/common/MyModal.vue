@@ -1,6 +1,6 @@
 <template>
   <div class="modal-box" @click="mask">
-    <div class="modal modal-in">
+    <div class="modal modal-in" @click.stop="">
       <header class="modal-header">
         <slot name="header">
           <h2>这是Modal弹框的标题</h2>

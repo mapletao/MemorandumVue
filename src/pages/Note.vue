@@ -26,14 +26,14 @@
         <button @click="setShowModal(true)" v-if="!editStatus">删除</button>
       </footer>
     </div>
-    <Modal v-if="showModal" @close="setShowModal(false)" (ok)="delete()"></Modal>
+    <MyModal v-if="showModal" @close="close" @ok="del"></MyModal>
   </div>
 </template>
 
 <script>
 import Header from '../components/common/Header'
+import MyModal from '../components/common/MyModal'
 import {getNote} from '../services/notes/notes'
-import Modal from '../components/common/Modal'
 export default {
   name: 'Note',
   data () {
@@ -63,7 +63,6 @@ export default {
       this.title = val
     },
     init () {
-      console.log(this.id)
       if (this.id < 1) {
         this.setTitle('添加笔记')
         this.setEditStatus(true)
@@ -73,7 +72,10 @@ export default {
         this.getNote()
       }
     },
-    delete () {},
+    close () {
+      this.setShowModal(false)
+    },
+    del (val) {},
     saveOk () {},
     getNote () {
       getNote(this.id)
@@ -85,7 +87,7 @@ export default {
         })
     }
   },
-  components: {Header, Modal}
+  components: {Header, MyModal}
 }
 </script>
 
