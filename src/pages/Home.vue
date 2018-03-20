@@ -9,7 +9,9 @@
         <span @click="nextMonth()" class="header-right">&gt;</span>
       </div>
       <ul class="calendar-con">
-        <li v-for="item in weeks" :key="item" class="calendar-item">{{item}}</li>
+        <li v-for="item in weeks" :key="item" class="calendar-item">
+          <span>{{item}}</span>
+        </li>
         <template v-for="list in days">
           <li v-for="item in list" :key="item" class="calendar-item"
               @click="selectedDate(item)" v-bind:class="{'active': isSelected(item)}">
@@ -171,6 +173,7 @@ export default {
 </script>
 
 <style lang="less">
+
   @import '../assets/css/theme.less';
   .home-page {
     .calendar-header {
@@ -182,13 +185,46 @@ export default {
     .calendar-con {
       list-style: none;
       font-size: 0;
+      @width: 100%/7;
       .calendar-item {
         display: inline-block;
+        position: relative;
         font-size: @fontSize14;
-        width: 100%/7;
-        text-align: center;
+        width: @width;
+        height:0;
+        padding-bottom: @width;
+        overflow: hidden;
+        >span {
+          .center()
+        }
         &.active {
-          background: #ddd;
+          @width: 60px;
+          @borderColor: #5458e4;
+          > span {
+            z-index: 1;
+            color: #fff;
+          }
+          .angle() {
+            width: 0;
+            height: 0;
+            position: absolute;
+            border-left: @width*2/3 solid transparent;
+            border-right: @width*2/3 solid transparent;
+          }
+          &:after {
+            content: '';
+            .center();
+            .angle();
+            top: 40%;
+            border-bottom: @width solid @borderColor;
+          }
+          &:before {
+            content: '';
+            .center();
+            .angle();
+            top: 60%;
+            border-top: @width solid @borderColor;
+          }
         }
       }
     }
