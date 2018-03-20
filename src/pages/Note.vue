@@ -6,17 +6,12 @@
     <!--@click="setShowModal(true)"-->
     <div class="page-con">
       <div class="form-item">
-        联系电话:
-        <input type="text" v-model="note.mobile" v-if="editStatus" class="form-input"/>
-        <span v-if="!editStatus">{{note.mobile}}</span>
-      </div>
-      <div class="form-item">
-        访问人:
+        名称:
         <input type="text" v-model="note.name" v-if="editStatus" class="form-input"/>
         <span v-if="!editStatus">{{note.name}}</span>
       </div>
       <div class="form-item">
-        备注：
+        详情：
         <textarea v-model="note.remark" v-if="editStatus" class="form-input"></textarea>
         <span v-if="!editStatus">{{note.remark}}</span>
       </div>

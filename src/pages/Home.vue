@@ -21,9 +21,8 @@
       </ul>
       <ul class="note-con">
         <router-link :to="'note/'+item.id" tag="li" v-for="item in notes" :key="item.name">
-          mobile:{{item.mobile}}
-          name:{{item.name}}
-          remark: {{item.remark}}
+          <h2>名称:{{item.name}}</h2>
+          <p>详细:{{item.remark ? item.remark: '无' }}</p>
         </router-link>
         <router-link :to="'note/0'" tag="li" class="add-note" >+</router-link>
       </ul>
@@ -60,6 +59,9 @@ export default {
       return (this.selectYear === this.currentYear && this.selectMonth === this.currentMonth && +d === this.currentDay)
     },
     selectedDate (d) {
+      if (!d) {
+        return !1
+      }
       this.setSelectMonth(this.currentMonth)
       this.setSelectYear(this.currentYear)
       this.setCurrentDay(d)
@@ -233,11 +235,17 @@ export default {
       padding: 0 10px;
       >li {
         margin: 10px 0;
-        background: #ccc;
+        background: #e8e8e8;
+        > h2 {
+          .text-line(1)
+        }
+        >p {
+          .text-line(2)
+        }
       }
       .add-note {
-        border: 1px dotted #ddd;
-        font-size: 20px;
+        border: 1px dotted #564a4a;
+        font-size: @fontSize16;
         text-align: center;
         background: none;
       }
