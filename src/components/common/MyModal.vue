@@ -1,4 +1,5 @@
 <template>
+  <transition name="fade">
   <div class="modal-box" @click="mask">
     <div class="modal modal-in" @click.stop="">
       <header class="modal-header">
@@ -20,6 +21,7 @@
       </footer>
     </div>
   </div>
+  </transition>
 </template>
 
 <script>
@@ -100,6 +102,14 @@ export default {
         line-height: 60px;
       }
     }
+  }
+  .fade-enter,
+  .fade-leave-active {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .5s ease
   }
 
 </style>
