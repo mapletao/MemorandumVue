@@ -1,19 +1,4 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router/index'
-import 'lib-flexible/flexible'
 
-require('./assets/css/common.less')
-
-Vue.config.productionTip = false
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+import {createApp} from './App.js'
+// eslint-disable-next-line no-unused-vars
+const {app} = createApp()
